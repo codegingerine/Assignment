@@ -1,0 +1,382 @@
+/* =================================================
+
+DON'T IMPLEMET CHANGES IN CSS FILE. 
+COMPILED FROM SASS.
+
+================================================= */
+
+ /* .navbar-collapse {
+    background: grey;
+}
+@media (max-width: 768px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 54px;
+        left: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+        width: 100%;
+    }
+    .navbar-collapse.collapsing {
+        height: auto;
+        -webkit-transition: left 0.3s ease;
+        -o-transition: left 0.3s ease;
+        -moz-transition: left 0.3s ease;
+        transition: left 0.3s ease;
+        left: -100%;
+    }
+    .navbar-collapse.show {
+        left: 0;
+        -webkit-transition: left 0.3s ease-in;
+        -o-transition: left 0.3s ease-in;
+        -moz-transition: left 0.3s ease-in;
+        transition: left 0.3s ease-in;
+    }
+} */
+/*
+.slider-main {
+    .slick-track {
+        // @include display-flex;
+        // @include align-items(center);
+    }
+    .slick-slide {
+        padding: 10px;
+        opacity: 0.5;
+    //     // @include transition(opacity 1s ease);
+        img {
+            width: 50%;
+            // max-width: auto;
+            margin: 0 auto;
+            // @include transition(all .3s ease);
+        }
+    }
+    .slick-slide.slick-current { 
+        opacity: 1;
+    //     // @include transition(opacity 1s ease);
+        img {
+            width: auto;
+            max-width: 100%;
+    //         // @include transition(all .3s ease);
+        }
+    }
+}
+*/
+
+
+/* Albums slider and music details */
+.albums {
+    position: relative;
+    overflow: hidden;
+}
+// album background
+.album-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    img {
+        width: 100%;
+        -webkit-filter: grayscale(100%) opacity(.2);
+        filter: grayscale(100%) opacity(.2);
+    }
+}
+// album background gradient overlay
+.album-bg::before {
+    content:" ";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 1;
+    background-color: rgba(27, 27, 27, .85);
+    background: rgba(27, 27, 27, .85);
+    background: -moz-linear-gradient(top, rgba(27,27,27,0.1) 0%, rgba(27,27,27,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(27,27,27,1)), color-stop(100%, rgba(27,27,27,1)));
+    background: -webkit-linear-gradient(top, rgba(27,27,27,0.1) 0%, rgba(27,27,27,1) 100%);
+    background: -o-linear-gradient(top, rgba(27,27,27,0.1) 0%, rgba(27,27,27,1) 100%);
+    background: -ms-linear-gradient(top, rgba(27,27,27,0.1) 0%, rgba(27,27,27,1) 100%);
+    background: linear-gradient(to bottom, rgba(27,27,27,0.1) 0%, rgba(27,27,27,1) 100%);
+}
+// album playlist button
+#album-playlist-side-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    height: $album-header-items-height;
+    background-image: url('../images/more_ico.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: 2;
+}
+// album header
+.album-header {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.album-header-intro {
+    margin-bottom: 0;
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+.album-header-title {
+    color: #fff;
+}
+// albums slider
+#albums-carousel {
+    padding-top: 100px;
+    // slider nav moved to top next to album header
+    .owl-nav {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        height: $album-header-items-height;
+        img {
+            position: absolute;
+            top: 50%;
+            height: 100%;
+            width: auto;         
+            @include transform(translateY(-50%));
+        }
+        .owl-next {
+            display: none;
+        }
+    }
+    // slides with albums
+    .owl-item {
+        opacity: 0.5;
+        text-align: center;
+        .album-cover {
+            @include display-flex;
+            @include align-items(center);
+            height: 35vh;
+            margin: 0 auto;
+            img {
+                height: 40%;
+                width: auto;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+        }
+    }
+    .owl-item:not(.center) {
+        .album-details {
+            opacity: 0;
+        }
+    }
+    // active central slide
+    .owl-item.center {
+        opacity: 1;
+        .album-cover {
+            img {
+                @include flex(0 0 auto);
+                height: auto;
+                max-height: 100%;
+            }
+        }
+        .album-details {
+            opacity: 1;
+        }
+    }
+}
+.album-track {
+    margin-top: 1.5rem;
+    margin-bottom: .2rem;
+    color: $color-main;
+    font-size: 1.6rem;
+}
+.album-author {
+    margin-bottom: 0;
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+/* Music player */
+.player-controls {
+    @include display-flex;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    padding: 30px 15px;
+    .control {
+        position: relative;
+        height: 80px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    .control:not(.play) {
+        width: 18px;
+    }
+    .shuffle {
+        background-image: url('../images/shuffle_ico.svg');
+    }
+    .prev {
+        background-image: url('../images/previous_ico.svg');
+    }
+    .next {
+        background-image: url('../images/next_ico.svg');
+    }
+    .play {
+        background-image: url('../images/Play_inactive.png');
+        width: 80px;
+        border-radius: 100%;
+        // outer glow
+        @include box-shadow(0px 0px 40px 0px rgba(250, 249, 249, 0.25));
+    }
+    .active {
+        background-image: url('../images/Play_active.png');        
+    }
+    // play button inner glow
+    .play::before {
+        content: "";
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        border-radius: 100%;
+        @include box-shadow(inset 0 0 70px rgba(250, 249, 249, 0.17));
+        z-index: -1;
+    }
+    .repeat {
+        background-image: url('../images/repeat_ico.svg');
+    }
+    // progress bar
+    .progress-wrap {
+        @include flex(1 100%);
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
+        margin-top: 30px;
+    }
+    .progress-start,
+    .progress-end {
+        margin-bottom: 0;
+        font-size: .65rem;
+        line-height: 1;
+    }
+    .progress {
+        position: relative;
+        height: auto;
+        width: 90%;
+        margin: 0 10px;
+        background-color: transparent;
+    }
+    .progress-base {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        margin: 0;
+        @include transform(translateY(-50%));
+        background-color: $bg-progress-base;
+    }
+    .circle {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        height: 4px;
+        width: 4px;
+        @include transform(translateY(-50%));
+        background-color: $bg-progress-base;
+        z-index: 1;
+    }
+    .progress-bar {
+        height: 4px;
+        width: 60%;
+        background-color: $bg-progress-bar;
+        z-index: 1;
+    }
+}
+/* Playlist */
+.playlist-header {
+    @include display-flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+    position: relative;
+    width: 100%;
+    height: 78px;
+    background-color: $bg-basic;
+    padding-left: 30px;
+    padding-right: 30px;
+    .back-btn {
+        width: 11px;
+    }
+    .back-btn,
+    .album-details,
+    .player-controls {
+        z-index: 1;
+    }
+    .album-details {
+        margin-right: auto;
+        padding-left: 30px;
+    }
+    .album-track {
+        font-size: 1rem;
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 1;
+    }
+    .album-author {
+        font-size: .65rem;
+    }
+    .play {
+        width: 45px;
+        height: 45px;
+    }
+}
+.playlist {
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 999;
+    #albumPlaylist {
+        padding-top: 30px;
+    }
+    li > * {
+        line-height: 1.1;
+    }
+    li {
+        @include display-flex;
+        @include justify-content(space-between);
+        @include align-items(flex-end);
+        padding: 11px 0;
+    }
+    .track-no {
+        font-size: .65rem;
+        width: 20px;
+        line-height: 1.4;
+    }
+    .track-title {
+        color: $bg-basic;
+        font-size: .8rem;
+    }
+    .lead-dots {
+        flex: 1;
+        height: 10px;
+        background-image:radial-gradient(circle, #cfcfcf 1px, white 0px);
+        background-size: 10px 10px;
+        background-repeat:repeat-x;
+        background-position: left bottom;
+        vertical-align: bottom;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .track-time {
+        margin-left: auto;
+        font-size: .8rem;
+    }
+    #albumPlaylist {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     $('#albums-carousel').owlCarousel({
-      autoplay: true,
+      // autoplay: true,
       center: true,
       loop: true,
       nav: true,

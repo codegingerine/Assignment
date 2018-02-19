@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 	var playlist = document.getElementById('playlist');
-	var albumPlaylist = document.getElementById('albumPlaylist');
+	var albumPlaylistWrap = document.getElementById('albumPlaylist-wrap');
 	var playlistSideBtn = document.getElementById('album-playlist-side-btn');
 	var playlistClose = document.querySelector('.back-btn');
 
@@ -37,39 +37,50 @@ document.addEventListener('DOMContentLoaded', function() {
 	];
 
 	// Show album playlist
-	playlistSideBtn.addEventListener('click', function() {
-		playlist.classList.remove('hide-item');
-		for (var i=0; i < playlistItems[0].length; i++) {
-			// create html elements
-			var track = document.createElement('li');
-			var trackNo = document.createElement('span');
-			var trackTitle = document.createElement('span');
-			var leadDots = document.createElement('span');
-			var trackTime = document.createElement('span');
-			// add order number
-			trackNo.innerHTML = i + 1 + '.';
-			trackNo.classList.add('track-no');
-			// add track title
-			trackTitle.innerHTML = playlistItems[0][i].toString();
-			trackTitle.classList.add('track-title');
-			leadDots.classList.add('lead-dots');
-			// add track duration
-			for (var j=0; j < playlistItems[1].length; j++) {
-				trackTime.innerHTML = playlistItems[1][i].toString();
-				trackTime.classList.add('track-time');
-			};
-			// append tracks to the album playlist
-			track.appendChild(trackNo);
-			track.appendChild(trackTitle);
-			track.appendChild(leadDots);
-			track.appendChild(trackTime);
-			albumPlaylist.appendChild(track);
-		};
-	});
+	var playlistBtns = document.querySelectorAll('.playlist-btn');
 
-	// Hide album playlist
+	for (var i=0; i < playlistBtns.length; i++) {
+		playlistBtns[i].addEventListener('click', function() {
+			playlist.classList.remove('hide-item');
+			var trackList = document.createElement('ul');
+			trackList.setAttribute("id", "albumPlaylist");
+
+			for (var i=0; i < playlistItems[0].length; i++) {
+				// create html elements
+				var track = document.createElement('li');
+				var trackNo = document.createElement('span');
+				var trackTitle = document.createElement('span');
+				var leadDots = document.createElement('span');
+				var trackTime = document.createElement('span');			
+				// add order number
+				trackNo.innerHTML = i + 1 + '.';
+				trackNo.classList.add('track-no');
+				// add track title
+				trackTitle.innerHTML = playlistItems[0][i].toString();
+				trackTitle.classList.add('track-title');
+				leadDots.classList.add('lead-dots');
+				// add track duration
+				for (var j=0; j < playlistItems[1].length; j++) {
+					trackTime.innerHTML = playlistItems[1][i].toString();
+					trackTime.classList.add('track-time');
+				};
+				// append tracks to the album playlist
+				track.appendChild(trackNo);
+				track.appendChild(trackTitle);
+				track.appendChild(leadDots);
+				track.appendChild(trackTime);
+				trackList.appendChild(track);
+				albumPlaylistWrap.appendChild(trackList)
+			};
+		});
+	};
+
+	// Hide playlist
 	playlistClose.addEventListener('click', function() {
 		playlist.classList.add('hide-item');
+
+		var albumPlaylist = document.getElementById('albumPlaylist');
+		albumPlaylist.remove();
 	});
 
 	var play = document.querySelectorAll('.play');
@@ -79,5 +90,5 @@ document.addEventListener('DOMContentLoaded', function() {
 			this.classList.toggle('active');
 		});
 	};
-	
+
 });

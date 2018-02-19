@@ -30,7 +30,7 @@
 							<p class="album-header-title">Unreleased</p>
 						</div>
 						<!--  album playlist button -->
-						<button id="album-playlist-side-btn" class="button"></button>
+						<button id="album-playlist-side-btn" class="playlist-btn side button"></button>
 						<!-- albums slider -->
 						<div id="albums-carousel" class="owl-carousel">
 							<div class="item">							
@@ -46,10 +46,18 @@
 								<div class="album-cover">
 									<img src="./images/unreleased_cover.png" />
 								</div>
+								<div class="album-details">
+									<h3 class="album-track">Self Concious</h3>
+									<h2 class="album-author">Kanye West</h2>
+								</div>
 							</div>
 							<div class="item">
 								<div class="album-cover">
 									<img src="./images/unreleased_cover.png" />
+								</div>
+								<div class="album-details">
+									<h3 class="album-track">Self Concious</h3>
+									<h2 class="album-author">Kanye West</h2>
 								</div>
 							</div>
 						</div> <!--end #albums-carousel -->
@@ -85,14 +93,18 @@
 									</div>
 									<p class="progress-end">4:21</p>
 								</div>
+								<div class="sound">
+									<img src="./images/sound.png" />
+								</div>
 							</div>
 						</div>
 					</div> <!--end .row -->
 				</div> <!--end .container -->
 			</section> <!--end .player -->
+			
 
 			<!-- Playlist -->
-			<section id="playlist" class="playlist hide-item">
+			<aside id="playlist" class="playlist side bottom hide-item">
 				<div class="container-fluid">
 						<div class="row">
 							<!-- <div class="col-12"> -->
@@ -112,14 +124,31 @@
 								</div>
 							</div>
 							<!-- </div> -->
-							<div class="col-12">	
-								<ul id="albumPlaylist">
-									<!-- JS playlist content -->
-								</ul>
+							<div id="albumPlaylist-wrap" class="col-12">	
+								<!-- JS playlist content -->
 							</div>
 					</div> <!--end .row -->
 				</div> <!--end .container -->
-			</section>
+			</aside>
+
+			<!-- Bottom Menu -->
+			<footer id="bottom-menu">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12 menu-wrap">
+							<button class="playlist-btn button"></button>
+							<div class="next-track">
+								<p>Next</p>
+								<div class="current-track">
+									<span class="track-title">Living' in a Movie</span>
+									<span class="lead-dots"></span>
+									<span class="track-time">3:27</span>
+								</div>
+							</div>
+						</div>
+					</div> <!--end .row -->
+				</div> <!--end .container -->
+			</footer>
 		</main>
 
 
@@ -127,7 +156,6 @@
 		<script type="text/javascript" src="./vendors/jquery/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="./vendors/popper/popper.min.js"></script>
 		<script type="text/javascript" src="./vendors/bootstrap-4.0.0-beta.2/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="./vendors/picturefill/picturefill.js" async></script>
 		<script type="text/javascript" src="./vendors/owl-carousel/dist/owl.carousel.min.js"></script>
 		
 		<!-- Project scripts -->

@@ -52,63 +52,9 @@ DON'T IMPLEMET CHANGES IN CSS FILE.
 COMPILED FROM SASS.
 
 ================================================= */
-/* .navbar-collapse {
-    background: grey;
-}
-@media (max-width: 768px) {
-    .navbar-collapse {
-        position: absolute;
-        top: 54px;
-        left: 0;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-bottom: 15px;
-        width: 100%;
-    }
-    .navbar-collapse.collapsing {
-        height: auto;
-        -webkit-transition: left 0.3s ease;
-        -o-transition: left 0.3s ease;
-        -moz-transition: left 0.3s ease;
-        transition: left 0.3s ease;
-        left: -100%;
-    }
-    .navbar-collapse.show {
-        left: 0;
-        -webkit-transition: left 0.3s ease-in;
-        -o-transition: left 0.3s ease-in;
-        -moz-transition: left 0.3s ease-in;
-        transition: left 0.3s ease-in;
-    }
-} */
-/*
-.slider-main {
-    .slick-track {
-        // @include display-flex;
-        // @include align-items(center);
-    }
-    .slick-slide {
-        padding: 10px;
-        opacity: 0.5;
-    //     // @include transition(opacity 1s ease);
-        img {
-            width: 50%;
-            // max-width: auto;
-            margin: 0 auto;
-            // @include transition(all .3s ease);
-        }
-    }
-    .slick-slide.slick-current { 
-        opacity: 1;
-    //     // @include transition(opacity 1s ease);
-        img {
-            width: auto;
-            max-width: 100%;
-    //         // @include transition(all .3s ease);
-        }
-    }
-}
-*/
+main {
+  position: relative; }
+
 /* Albums slider and music details */
 .albums {
   position: relative;
@@ -143,7 +89,7 @@ COMPILED FROM SASS.
   background: -ms-linear-gradient(top, rgba(27, 27, 27, 0.1) 0%, #1b1b1b 100%);
   background: linear-gradient(to bottom, rgba(27, 27, 27, 0.1) 0%, #1b1b1b 100%); }
 
-#album-playlist-side-btn {
+.playlist-btn.side {
   position: absolute;
   top: 30px;
   right: 30px;
@@ -244,7 +190,7 @@ COMPILED FROM SASS.
   -webkit-justify-content: space-between;
   -ms-flex-pack: space-between;
   justify-content: space-between;
-  padding: 30px 15px; }
+  padding: 30px 15px 60px; }
   .player-controls .control {
     position: relative;
     height: 80px;
@@ -339,6 +285,12 @@ COMPILED FROM SASS.
     width: 60%;
     background-color: #2a2a2a;
     z-index: 1; }
+  .player-controls .sound {
+    position: absolute;
+    bottom: 0;
+    left: 0; }
+    .player-controls .sound img {
+      height: 35px; }
 
 /* Playlist */
 .playlist-header {
@@ -375,6 +327,8 @@ COMPILED FROM SASS.
     line-height: 1; }
   .playlist-header .album-author {
     font-size: .65rem; }
+  .playlist-header .player-controls {
+    padding-bottom: 30px; }
   .playlist-header .play {
     width: 45px;
     height: 45px; }
@@ -384,7 +338,8 @@ COMPILED FROM SASS.
   background-color: #fff;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  bottom: 0;
   min-height: 100vh;
   z-index: 999; }
   .playlist #albumPlaylist {
@@ -404,28 +359,87 @@ COMPILED FROM SASS.
     -ms-flex-align: flex-end;
     align-items: flex-end;
     padding: 11px 0; }
-  .playlist .track-no {
-    font-size: .65rem;
-    width: 20px;
-    line-height: 1.4; }
-  .playlist .track-title {
-    color: #1b1b1b;
-    font-size: .8rem; }
-  .playlist .lead-dots {
-    flex: 1;
-    height: 10px;
-    background-image: radial-gradient(circle, #cfcfcf 1px, white 0px);
-    background-size: 10px 10px;
-    background-repeat: repeat-x;
-    background-position: left bottom;
-    vertical-align: bottom;
-    margin-left: 10px;
-    margin-right: 10px; }
-  .playlist .track-time {
-    margin-left: auto;
-    font-size: .8rem; }
-  .playlist #albumPlaylist {
-    padding-left: 15px;
-    padding-right: 15px; }
+
+.track-no {
+  font-size: .65rem;
+  width: 20px;
+  line-height: 1.4; }
+
+.track-title {
+  color: #1b1b1b;
+  font-size: .8rem; }
+
+.lead-dots {
+  flex: 1;
+  height: 10px;
+  background-image: radial-gradient(circle, #cfcfcf 1px, white 0px);
+  background-size: 10px 10px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  vertical-align: bottom;
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.track-time {
+  margin-left: auto;
+  font-size: .8rem; }
+
+#albumPlaylist {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+#bottom-menu {
+  background-color: #fff; }
+  #bottom-menu .playlist-btn {
+    width: 25px;
+    height: 25px;
+    background-image: url("../images/playlist_ico.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin-right: 25px; }
+  #bottom-menu .menu-wrap {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 12px 30px; }
+  #bottom-menu .next-track {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1; }
+    #bottom-menu .next-track p:first-of-type {
+      position: relative;
+      top: 3px;
+      margin-bottom: 5px;
+      line-height: 1.1;
+      font-size: .7rem;
+      text-transform: uppercase; }
+    #bottom-menu .next-track .current-track {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: space-between;
+      justify-content: space-between;
+      -webkit-align-items: flex-end;
+      -ms-flex-align: flex-end;
+      align-items: flex-end; }
+    #bottom-menu .next-track .track-title {
+      line-height: 1;
+      font-size: .9rem; }
+    #bottom-menu .next-track .track-time {
+      margin-left: auto;
+      font-size: .9rem;
+      line-height: 1; }
 
 /*# sourceMappingURL=style.css.map */

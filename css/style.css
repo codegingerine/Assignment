@@ -388,6 +388,7 @@ main {
   padding-left: 15px;
   padding-right: 15px; }
 
+/* Bottom menu with playlist */
 #bottom-menu {
   background-color: #fff; }
   #bottom-menu .playlist-btn {

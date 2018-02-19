@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	for (var i=0; i < playlistBtns.length; i++) {
 		playlistBtns[i].addEventListener('click', function() {
 			playlist.classList.remove('hide-item');
+			// create list item for playlits
 			var trackList = document.createElement('ul');
 			trackList.setAttribute("id", "albumPlaylist");
-
 			for (var i=0; i < playlistItems[0].length; i++) {
 				// create html elements
 				var track = document.createElement('li');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Hide playlist
 	playlistClose.addEventListener('click', function() {
 		playlist.classList.add('hide-item');
-
+		// remove list item
 		var albumPlaylist = document.getElementById('albumPlaylist');
 		albumPlaylist.remove();
 	});

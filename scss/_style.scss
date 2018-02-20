@@ -6,6 +6,7 @@ COMPILED FROM SASS.
 ================================================= */
 main {
     position: relative;
+    overflow: hidden;
 }
 /* Albums slider and music details */
 .albums {
@@ -55,6 +56,7 @@ main {
     background-size: contain;
     background-position: center;
     z-index: 2;
+    padding: 8px;
 }
 // album header
 .album-header {
@@ -288,10 +290,10 @@ main {
 .playlist {
     position: absolute;
     background-color: #fff;
-    top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
+    height: 100%;
     min-height: 100vh;
     z-index: 999;
     #albumPlaylist {
@@ -306,6 +308,23 @@ main {
         @include align-items(flex-end);
         padding: 11px 0;
     }
+}
+// playlist sliding effects
+.playlist.inactive {
+    bottom: -100%;
+    right: -100%;
+}
+.playlist.side-go {
+    @include transition(right .5s ease);
+}
+.playlist.side-back {
+    @include transition(right .5s ease, bottom 0s ease 1s);    
+}
+.playlist.bottom-go {
+    @include transition(bottom .5s ease);
+}
+.bottom-back {
+    @include transition(bottom .5s ease, right 0s ease 1s);    
 }
 .track-no {
     font-size: .65rem;

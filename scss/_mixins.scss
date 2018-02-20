@@ -49,7 +49,7 @@
 	transform: $properties;
 }
 
-@mixin transition($properties) {
+@mixin transition($properties...) {
 	-webkit-transition: $properties;
 	-moz-transition: $properties;
 	-o-transition: $properties;

@@ -113,6 +113,12 @@
 	align-items: $properties;
 }
 
+@mixin align-content($properties) {
+	-webkit-align-content: $properties;
+	-ms-flex-align: $properties;
+	align-content: $properties;
+}
+
 @mixin align-self($properties) {
 	-webkit-align-self: $properties;
 	-ms-flex-item-align: $properties;

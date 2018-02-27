@@ -36,7 +36,6 @@ main {
     width:100%;
     height:100%;
     z-index: 1;
-    background-color: rgba(27, 27, 27, .85);
     background: rgba(27, 27, 27, .85);
     background: -moz-linear-gradient(top, rgba(27,27,27,0.1) 0%, rgba(27,27,27,1) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(27,27,27,1)), color-stop(100%, rgba(27,27,27,1)));
@@ -248,6 +247,46 @@ main {
     }
 }
 /* Playlist */
+.playlist {
+    position: absolute;
+    background-color: #fff;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    z-index: 999;
+    #albumPlaylist {
+        padding-top: 30px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .link {
+        @include display-flex;
+        @include justify-content(space-between);
+        @include align-items(flex-end);
+        padding: 11px 0;
+        line-height: 1.1;
+    }
+}
+// playlist sliding effects
+.playlist.inactive {
+    bottom: -100%;
+    right: -100%;
+}
+.playlist.side-go {
+    @include transition(right .5s ease);
+}
+.playlist.side-back {
+    @include transition(right .5s ease, bottom 0s ease 1s);    
+}
+.playlist.bottom-go {
+    @include transition(bottom .5s ease);
+}
+.bottom-back {
+    @include transition(bottom .5s ease, right 0s ease 1s);    
+}
+// playlist header
 .playlist-header {
     @include display-flex;
     @include justify-content(space-between);
@@ -287,45 +326,61 @@ main {
         height: 45px;
     }
 }
-.playlist {
-    position: absolute;
-    background-color: #fff;
-    right: 0;
-    bottom: 0;
+#albumPlaylist-wrap {
+    background-color: $bg-playlist;
+}
+// playlist extra (shuffle btn)
+#playlist-extras {
+    display: none;
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    z-index: 999;
-    #albumPlaylist {
-        padding-top: 30px;
-    }
-    li > * {
-        line-height: 1.1;
-    }
-    li {
-        @include display-flex;
-        @include justify-content(space-between);
-        @include align-items(flex-end);
-        padding: 11px 0;
-    }
-}
-// playlist sliding effects
-.playlist.inactive {
+    height: 40%;
+    position: relative;
     bottom: -100%;
-    right: -100%;
+    left: 0;
+    @include display-flex;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-content(flex-end);
+    padding: 0 30px;
+    background: rgba(27, 27, 27, .85);
+    background: -moz-linear-gradient(top, rgba(250,250,250,0) 0%, rgba(250,250,250,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(250,250,250,0)), color-stop(100%, rgba(250,250,250,1)));
+    background: -webkit-linear-gradient(top, rgba(250,250,250,0) 0%, rgba(250,250,250,1) 100%);
+    background: -o-linear-gradient(top, rgba(250,250,250,0) 0%, rgba(250,250,250,1) 100%);
+    background: -ms-linear-gradient(top, rgba(250,250,250,0) 0%, rgba(250,250,250,1) 100%);
+    background: linear-gradient(to bottom, rgba(250,250,250,0) 0%, rgba(250,250,250,1) 100%);
+    opacity: 0;
+    filter: alpha(opacity=0);
+    * {
+        @include flex(0 0 100%);
+        margin-bottom: 15px;
+    }
+    .hide-ico {
+        height: 10px;
+        background-image: url('../images/hide_ico.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
 }
-.playlist.side-go {
-    @include transition(right .5s ease);
+#playlist-extras.extras-position {
+    position: fixed;
+    bottom: 0;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    @include transition(opacity .5s ease);
 }
-.playlist.side-back {
-    @include transition(right .5s ease, bottom 0s ease 1s);    
-}
-.playlist.bottom-go {
-    @include transition(bottom .5s ease);
-}
-.bottom-back {
-    @include transition(bottom .5s ease, right 0s ease 1s);    
-}
+#playlist-extras.extras-shuffle-btn {
+    bottom: 0;
+    background: $bg-playlist;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    @include transition(all .5s ease);
+    .hide-ico {
+        height: 0;
+    }
+} 
+// playlist content
 .track-no {
     font-size: .65rem;
     width: 20px;
@@ -349,10 +404,6 @@ main {
 .track-time {
     margin-left: auto;
     font-size: .8rem;
-}
-#albumPlaylist {
-    padding-left: 15px;
-    padding-right: 15px;
 }
 /* Bottom menu with playlist */
 #bottom-menu {

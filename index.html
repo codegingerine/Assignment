@@ -15,7 +15,7 @@
 
 	<body>
 
-		<main>
+		<main id="main">
 			<!-- Albums slider and music details -->
 			<section class="albums">
 				<div class="container-fluid">
@@ -101,7 +101,6 @@
 					</div> <!--end .row -->
 				</div> <!--end .container -->
 			</section> <!--end .player -->
-			
 
 			<!-- Playlist -->
 			<aside id="playlist" class="playlist inactive">
@@ -122,8 +121,12 @@
 									<button class="control play button"></button>
 								</div>
 							</div>
-							<div id="albumPlaylist-wrap" class="col-12">	
+							<div id="albumPlaylist-wrap" class="col-12">
 								<!-- JS playlist content -->
+							</div>
+							<div id="playlist-extras">
+								<button class="button button-bg">Shuffle play</button>
+								<button class="button hide-ico"></button>
 							</div>
 					</div> <!--end .row -->
 				</div> <!--end .container -->

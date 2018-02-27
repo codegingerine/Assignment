@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 	
+	var mainWrap = document.getElementById('main');
 	var playlist = document.getElementById('playlist');
 	var albumPlaylistWrap = document.getElementById('albumPlaylist-wrap');
 	var playlistClose = document.querySelector('.back-btn');
@@ -35,12 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		]
 	];
 
-	var playlistBtns = document.querySelectorAll('.playlist-btn');
-	var bottomMenuBtn = document.querySelector('#bottom-menu .playlist-btn');
-	var sideMenuBtn = document.querySelector('.albums .playlist-btn');
-	
+	var playlistBtns = document.querySelectorAll('.playlist-btn'),
+		bottomMenuBtn = document.querySelector('#bottom-menu .playlist-btn'),
+		sideMenuBtn = document.querySelector('.albums .playlist-btn');
+	var playlistExtras = document.getElementById('playlist-extras'),
+		playlistExtrasBtn = document.querySelector('.hide-ico');
+		
 	/* Create & Open/Close created album playlist */
-	// Remove transitions
+	// Remove playlist item transitions
 	function removeTransition() {
 		if ( playlist.classList.contains('side-go') || playlist.classList.contains('bottom-go') || 
 			playlist.classList.contains('side-back') || playlist.classList.contains('bottom-back') ) {
@@ -50,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			playlist.classList.remove('bottom-back');
 		};
 	};
+
 	// Scroll to top of the page smooth
 	function animateToTop() {
 		var scrollToTop = window.setInterval(function() {
@@ -62,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}, 10);
 	};
 
+	// Open/close created playlist
 	for (var i=0; i < playlistBtns.length; i++) {
 		playlistBtns[i].addEventListener('click', function() {
 			// create playlist and list items
@@ -70,10 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			for (var i=0; i < playlistItems[0].length; i++) {
 				// create html elements
 				var track = document.createElement('li');
+				var trackLink = document.createElement('a');
 				var trackNo = document.createElement('span');
 				var trackTitle = document.createElement('span');
 				var leadDots = document.createElement('span');
 				var trackTime = document.createElement('span');
+				// add href attribute
+				trackLink.classList.add('link');
+				trackLink.setAttribute('href', '#');
 				// add order number
 				trackNo.innerHTML = i + 1 + '.';
 				trackNo.classList.add('track-no');
@@ -87,45 +96,71 @@ document.addEventListener('DOMContentLoaded', function() {
 					trackTime.classList.add('track-time');
 				};
 				// append tracks to the album playlist
-				track.appendChild(trackNo);
-				track.appendChild(trackTitle);
-				track.appendChild(leadDots);
-				track.appendChild(trackTime);
+				trackLink.appendChild(trackNo);
+				trackLink.appendChild(trackTitle);
+				trackLink.appendChild(leadDots);
+				trackLink.appendChild(trackTime);
+				track.appendChild(trackLink);
 				trackList.appendChild(track);
-				albumPlaylistWrap.appendChild(trackList)
+				albumPlaylistWrap.appendChild(trackList);
 			};
-
-			// Open/Close created playlist
+			// change css
 			removeTransition();
 			playlist.classList.remove('inactive');
-
+			setTimeout(function() {
+				mainWrap.style.overflow = 'visible';
+				playlistExtras.classList.add('extras-position');
+			}, 500);
+			
 			if (this === sideMenuBtn) { /* side sliding playlist */
-				// open
+				// when open
 				animateToTop();
 				playlist.classList.add('side-go');
-				// close
+				// when close
 				playlistClose.addEventListener('click', function() {
 					removeTransition();
 					playlist.classList.add('inactive');
 					playlist.classList.add('side-back');
+					mainWrap.style.overflow = 'hidden';
+					playlistExtras.classList.remove('extras-position');
+					// check if extras btn is initial settings, if yes, remove to set it to fixed position
+					if (playlistExtras.classList.contains('extras-shuffle-btn')) {
+						playlistExtras.classList.remove('extras-shuffle-btn');
+					};
 					// remove playlist
-					trackList.remove();
+					setTimeout(function() {
+						trackList.remove();
+					}, 500);
 				});
 			} else if (this === bottomMenuBtn) { /* bottom sliding playlist */
-				// open
+				// when open
 				animateToTop();
 				playlist.classList.add('bottom-go');
-				// close
+				// when close
 				playlistClose.addEventListener('click', function() {
 					removeTransition();
 					playlist.classList.add('inactive');
 					playlist.classList.add('bottom-back');
+					mainWrap.style.overflow = 'hidden';
+					playlistExtras.classList.remove('extras-position');
+					// check if extras btn is initial settings, if yes, remove to set it to fixed position
+					if (playlistExtras.classList.contains('extras-shuffle-btn')) {
+						playlistExtras.classList.remove('extras-shuffle-btn');
+					};
 					// remove playlist
-					trackList.remove();
+					setTimeout(function() {
+						trackList.remove();
+					}, 500);
 				});				
 			};
 		});
 	};
+
+	// Playlist Extras item: remove fixed position and move to the bottom of playlist
+	playlistExtrasBtn.addEventListener('click', function() {
+		playlistExtras.classList.remove('extras-position');
+		playlistExtras.classList.add('extras-shuffle-btn');
+	});
 
 	// Toggle play buttons
 	var play = document.querySelectorAll('.play');

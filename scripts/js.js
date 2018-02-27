@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var mainWrap = document.getElementById('main');
 	var playlist = document.getElementById('playlist');
 	var albumPlaylistWrap = document.getElementById('albumPlaylist-wrap');
-	var playlistClose = document.querySelector('.back-btn');
+	var playlistClose = document.querySelector('#playlist .back-btn');
 
 	var playlistItems = [
 		[

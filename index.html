@@ -24,6 +24,10 @@
 						<div class="album-bg">
 							<img src="./images/bg_image.jpg"/>
 						</div>
+						<!-- back to albums list btn -->
+						<div class="back-btn to-albums button">
+							<img src="./images/back_ico.svg">
+						</div>
 						<!-- album header -->
 						<div class="col-12 album-header">
 							<p class="album-header-intro">Album</p>
@@ -38,7 +42,9 @@
 									<img src="./images/unreleased_cover.png" />
 								</div>
 								<div class="album-details">
-									<h3 class="album-track">Self Concious</h3>
+									<div class="button open-info">
+										<h3 class="album-track">Self Concious(1)</h3>
+									</div>
 									<h2 class="album-author">Kanye West</h2>
 								</div>
 							</div>
@@ -47,7 +53,9 @@
 									<img src="./images/unreleased_cover.png" />
 								</div>
 								<div class="album-details">
-									<h3 class="album-track">Self Concious</h3>
+									<div class="button open-info">
+										<h3 class="album-track">Self Concious(2)</h3>
+									</div>
 									<h2 class="album-author">Kanye West</h2>
 								</div>
 							</div>
@@ -56,51 +64,69 @@
 									<img src="./images/unreleased_cover.png" />
 								</div>
 								<div class="album-details">
-									<h3 class="album-track">Self Concious</h3>
+									<div class="button open-info">
+										<h3 class="album-track">Self Concious(3)</h3>
+									</div>
 									<h2 class="album-author">Kanye West</h2>
 								</div>
 							</div>
 						</div> <!--end #albums-carousel -->
+
+						<!-- Current track info -->
+						<article class="track-info hide-item">
+							<div class="col-12">
+								<div class="back-btn button">
+									<img src="./images/back_ico.svg">
+								</div>
+								<div id="current-track-info">
+									<div id="current-track-on">
+										<!-- jQuery injected current track info content -->
+									</div>
+									<div class="info">
+										<p class="dots">...</p>
+										<button class="button cta">Add to playlist</button>
+										<button class="button cta">Show album</button>
+										<button class="button cta">Share with friends</button>
+									</div>
+								</div>
+							</div>
+						</article>
+						
+						<!-- Music player -->
+						<section class="player">
+							<div class="col-12">
+								<!-- audio player markup -->
+								<!-- <audio>
+									<source src="/path/to/track1.ogg" type="audio/ogg"></source>
+									<source src="/path/to/track2.mp3" type="audio/mpeg"></source>
+									<source src="/path/to/track3.wav" type="audio/x-wav"></source>
+									<p>Your browser does not support HTML5 audio player</p>
+								</audio> -->
+								<div class="player-controls">
+									<button class="control shuffle button"></button>
+									<button class="control prev button"></button>
+									<button class="control play button"></button>
+									<button class="control next button"></button>
+									<button class="control repeat button"></button>
+									<!-- progress bar -->
+									<div class="progress-wrap">
+										<p class="progress-start">1:47</p>
+										<div class="progress">
+											<hr class="progress-base">
+											<div class="circle"></div>
+											<div class="progress-bar"></div>
+										</div>
+										<p class="progress-end">4:21</p>
+									</div>
+									<div class="sound">
+										<img src="./images/sound.png" />
+									</div>
+								</div>
+							</div>
+						</section> <!--end .player -->
 					</div> <!--end .row -->
 				</div> <!--end .container -->
 			</section>
-
-			<!-- Music player -->
-			<section class="player">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<!-- audio player markup -->
-							<!-- <audio>
-								<source src="/path/to/track1.ogg" type="audio/ogg"></source>
-								<source src="/path/to/track2.mp3" type="audio/mpeg"></source>
-								<source src="/path/to/track3.wav" type="audio/x-wav"></source>
-								<p>Your browser does not support HTML5 audio player</p>
-							</audio> -->
-							<div class="player-controls">
-								<button class="control shuffle button"></button>
-								<button class="control prev button"></button>
-								<button class="control play button"></button>
-								<button class="control next button"></button>
-								<button class="control repeat button"></button>
-								<!-- progress bar -->
-								<div class="progress-wrap">
-									<p class="progress-start">1:47</p>
-									<div class="progress">
-										<hr class="progress-base">
-										<div class="circle"></div>
-										<div class="progress-bar"></div>
-									</div>
-									<p class="progress-end">4:21</p>
-								</div>
-								<div class="sound">
-									<img src="./images/sound.png" />
-								</div>
-							</div>
-						</div>
-					</div> <!--end .row -->
-				</div> <!--end .container -->
-			</section> <!--end .player -->
 
 			<!-- Playlist -->
 			<aside id="playlist" class="playlist inactive">
